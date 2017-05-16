@@ -16,15 +16,21 @@
 
 package com.google.firebase.quickstart.fcm;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -80,6 +86,22 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
+
+        ListView logListView = (ListView) findViewById(R.id.logListView);
+        LogListHelper logListHelper = LogListHelper.getInstance();
+        ArrayAdapter<String> logAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, logListHelper.getLogList());
+        logListView.setAdapter(logAdapter);
+        Intent intent = getIntent();
+        if (intent != null) {
+            String logString = intent.getStringExtra("new-log");
+            Log.w(TAG, "String logString = intent.getStringExtra(new-log);");
+            if (logString != null) {
+                logListHelper.getLogList().add(logString);
+                Log.w(TAG, "logListHelper.getLogList().add(logString);");
+                logAdapter.notifyDataSetChanged();
+                Log.w(TAG, "logAdapter.notifyDataSetChanged();");
+            }
+        }
     }
 
 }

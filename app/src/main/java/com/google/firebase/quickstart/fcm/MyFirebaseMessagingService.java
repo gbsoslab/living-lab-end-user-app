@@ -79,6 +79,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("new-log", remoteMessage.getNotification().getBody());
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
     // [END receive_message]
 
