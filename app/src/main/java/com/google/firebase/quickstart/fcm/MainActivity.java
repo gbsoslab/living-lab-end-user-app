@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // [START subscribe_topics]
-                FirebaseMessaging.getInstance().subscribeToTopic("news");
+                FirebaseMessaging.getInstance().subscribeToTopic("news1");
                 // [END subscribe_topics]
 
                 // Log and toast
@@ -88,20 +89,32 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ListView logListView = (ListView) findViewById(R.id.logListView);
-        LogListHelper logListHelper = LogListHelper.getInstance();
-        ArrayAdapter<String> logAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, logListHelper.getLogList());
+        // LogListHelper logListHelper = LogListHelper.getInstance();
+//        ArrayAdapter<String> logAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, logListHelper.getLogList());
+        ArrayAdapter<CharSequence> logAdapter = ArrayAdapter.createFromResource(this, R.array.listview_array2, android.R.layout.simple_list_item_1);
         logListView.setAdapter(logAdapter);
-        Intent intent = getIntent();
-        if (intent != null) {
-            String logString = intent.getStringExtra("new-log");
-            Log.w(TAG, "String logString = intent.getStringExtra(new-log);");
-            if (logString != null) {
-                logListHelper.getLogList().add(logString);
-                Log.w(TAG, "logListHelper.getLogList().add(logString);");
-                logAdapter.notifyDataSetChanged();
-                Log.w(TAG, "logAdapter.notifyDataSetChanged();");
-            }
-        }
+//        logListView.setAdapter(logAdapter);
+//        Intent intent = getIntent();
+//        if (intent != null) {
+//            String logString = intent.getStringExtra("new-log");
+//            Log.w(TAG, "String logString = intent.getStringExtra(new-log);");
+//            if (logString != null) {
+//                logListHelper.getLogList().add(logString);
+//                Log.w(TAG, "logListHelper.getLogList().add(logString);");
+//                logAdapter.notifyDataSetChanged();
+//                Log.w(TAG, "logAdapter.notifyDataSetChanged();");
+//            }
+//        }
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this, R.array.spinner_array, android.R.layout.simple_spinner_item);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+
+        Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
+        ArrayAdapter<CharSequence> arrayAdapter2 = ArrayAdapter.createFromResource(this, R.array.spinner_array2, android.R.layout.simple_spinner_item);
+        arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(arrayAdapter2);
     }
 
 }

@@ -1,11 +1,30 @@
 <resources>
-    <string name="app_name">FCM Demo</string>
+    <string name="app_name">시민참여형 재난 알림 서비스</string>
     <string name="quickstart_message">Click the SUBSCRIBE TO NEWS button below to subscribe to the
         news topic. Messages sent to the news topic will be received. The LOG TOKEN button logs the
         InstanceID token to logcat.</string>
-    <string name="subscribe_to_news">Subscribe To 양덕동</string>
-    <string name="log_token">Log Token</string>
+    <string name="subscribe_to_news">알림 구독</string>
+    <string name="log_token">알림 구독 해제</string>
 
-    <string name="msg_subscribed">Subscribed to 양덕동</string>
+    <string name="msg_subscribed">Subscribed to Topic</string>
     <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+    <string-array name="listview_array2">
+        <item>A 지역 상황 발생, 즉시 대피하십시오.</item>
+        <item>B 지역 상황 발생, 즉시 대피하십시오.</item>
+        <item>C 지역 상황 발생, 즉시 대피하십시오.</item>
+    </string-array>
+
+    <string-array name="area_spinner_array">
+        <item>양덕동</item>
+        <item>환호동</item>
+        <item>장량동</item>
+        <item>흥해읍</item>
+        <item>이동</item>
+    </string-array>
+    <string-array name="situation_array">
+        <item>홍수</item>
+        <item>화재</item>
+        <item>지진</item>
+    </string-array>
+
 </resources>
